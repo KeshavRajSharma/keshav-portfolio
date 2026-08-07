@@ -1,0 +1,317 @@
+.section {
+  position: relative;
+
+  overflow: hidden;
+
+  border-top: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--background) 0%,
+      color-mix(
+        in srgb,
+        var(--surface-muted) 32%,
+        var(--background)
+      )
+      100%
+    );
+}
+
+.container {
+  position: relative;
+}
+
+.heading {
+  max-width: 680px;
+
+  margin-bottom: clamp(2.8rem, 5vw, 4rem);
+}
+
+.title {
+  margin: 0;
+
+  color: var(--foreground);
+
+  font-size: clamp(2.1rem, 4vw, 3.5rem);
+  line-height: 1.08;
+
+  font-weight: 690;
+
+  letter-spacing: -0.05em;
+}
+
+.subtitle {
+  max-width: 580px;
+
+  margin: 0.9rem 0 0;
+
+  color: var(--muted);
+
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.content {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.92fr)
+    minmax(380px, 1.08fr);
+
+  gap: clamp(3rem, 8vw, 6.5rem);
+
+  align-items: start;
+}
+
+.story {
+  max-width: 610px;
+}
+
+.story > p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: clamp(0.98rem, 1.5vw, 1.06rem);
+  line-height: 1.8;
+}
+
+.story > p + p {
+  margin-top: 1.2rem;
+}
+
+.education {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-top: 2rem;
+
+  padding: 1rem 1.1rem;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--surface-elevated) 88%,
+      transparent
+    );
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.educationIcon {
+  width: 2.75rem;
+  height: 2.75rem;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color: var(--primary);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 10%,
+      transparent
+    );
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--primary) 18%,
+      transparent
+    );
+
+  border-radius: 0.85rem;
+}
+
+.educationContent {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.12rem;
+}
+
+.educationLabel {
+  margin-bottom: 0.1rem;
+
+  color: var(--primary);
+
+  font-size: 0.68rem;
+  font-weight: 660;
+
+  letter-spacing: 0.09em;
+
+  text-transform: uppercase;
+}
+
+.educationContent strong {
+  color: var(--foreground);
+
+  font-size: 0.93rem;
+  font-weight: 630;
+}
+
+.educationContent > span:last-child {
+  color: var(--muted);
+
+  font-size: 0.82rem;
+}
+
+.areas {
+  display: grid;
+
+  gap: 0.9rem;
+}
+
+.areaCard {
+  display: grid;
+
+  grid-template-columns: auto 1fr;
+
+  gap: 1rem;
+
+  padding: 1.25rem;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--surface-elevated) 86%,
+      transparent
+    );
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform var(--transition-fast) ease,
+    border-color var(--transition-fast) ease,
+    box-shadow var(--transition-fast) ease;
+}
+
+.areaCard:hover {
+  transform: translateY(-2px);
+
+  border-color: var(--border-strong);
+
+  box-shadow: var(--shadow-md);
+}
+
+.areaIcon {
+  width: 2.7rem;
+  height: 2.7rem;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color: var(--primary);
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--primary) 12%,
+        transparent
+      ),
+      color-mix(
+        in srgb,
+        var(--accent) 8%,
+        transparent
+      )
+    );
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--primary) 18%,
+      transparent
+    );
+
+  border-radius: 0.9rem;
+}
+
+.areaCard h3 {
+  margin: 0;
+
+  color: var(--foreground);
+
+  font-size: 0.98rem;
+  font-weight: 630;
+
+  letter-spacing: -0.02em;
+}
+
+.areaCard p {
+  margin: 0.42rem 0 0;
+
+  color: var(--muted);
+
+  font-size: 0.87rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+
+    gap: 3rem;
+  }
+
+  .story {
+    max-width: 700px;
+  }
+
+  .areas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .areaCard {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .heading {
+    margin-bottom: 2.5rem;
+  }
+
+  .areas {
+    grid-template-columns: 1fr;
+  }
+
+  .areaCard {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .education {
+    align-items: flex-start;
+  }
+
+  .areaCard {
+    grid-template-columns: 1fr;
+  }
+}

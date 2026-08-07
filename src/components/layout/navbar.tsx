@@ -39,8 +39,6 @@ export function Navbar() {
       setScrolled(window.scrollY > 20);
     }
 
-    handleScroll();
-
     window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
@@ -98,59 +96,52 @@ export function Navbar() {
           aria-label="Keshav Raj Sharma home"
           onClick={closeMenu}
         >
-          Keshav<span>.</span>
+          Keshav Raj Sharma<span>.</span>
         </a>
 
-        <nav className="navbar-desktop" aria-label="Primary navigation">
-          <ul className="navbar-links">
-            {navItems.map((item) => {
-              const sectionId = item.href.slice(1);
-              const isActive = activeSection === sectionId;
+        <div className="navbar-right">
+          <nav className="navbar-desktop" aria-label="Primary navigation">
+            <ul className="navbar-links">
+              {navItems.map((item) => {
+                const sectionId = item.href.slice(1);
+                const isActive = activeSection === sectionId;
 
-              return (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className={`navbar-link ${
-                      isActive ? "navbar-link-active" : ""
-                    }`}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+                return (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      className={`navbar-link ${
+                        isActive ? "navbar-link-active" : ""
+                      }`}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
-        <div className="navbar-actions">
-          <ThemeToggle />
+          <div className="navbar-actions">
+            <ThemeToggle />
 
-          <a
-            href="/resume/keshav-raj-sharma-resume.pdf"
-            className="navbar-resume"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Resume
-          </a>
-
-          <button
-            type="button"
-            className="navbar-menu-button"
-            onClick={() => setMenuOpen((current) => !current)}
-            aria-label={
-              menuOpen ? "Close navigation menu" : "Open navigation menu"
-            }
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-          >
-            {menuOpen ? (
-              <X size={20} strokeWidth={1.9} aria-hidden="true" />
-            ) : (
-              <Menu size={20} strokeWidth={1.9} aria-hidden="true" />
-            )}
-          </button>
+            <button
+              type="button"
+              className="navbar-menu-button"
+              onClick={() => setMenuOpen((current) => !current)}
+              aria-label={
+                menuOpen ? "Close navigation menu" : "Open navigation menu"
+              }
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+            >
+              {menuOpen ? (
+                <X size={20} strokeWidth={1.9} aria-hidden="true" />
+              ) : (
+                <Menu size={20} strokeWidth={1.9} aria-hidden="true" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -185,17 +176,6 @@ export function Navbar() {
                   </a>
                 </li>
               ))}
-
-              <li className="navbar-mobile-resume">
-                <a
-                  href="/resume/keshav-raj-sharma-resume.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={closeMenu}
-                >
-                  Resume
-                </a>
-              </li>
             </ul>
           </motion.nav>
         )}

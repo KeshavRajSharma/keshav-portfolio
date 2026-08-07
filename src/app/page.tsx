@@ -1,65 +1,64 @@
 import { Navbar } from "@/components/layout/navbar";
+import { About } from "@/components/sections/about";
+import { Hero } from "@/components/sections/hero";
 
 export default function Home() {
   return (
     <>
       <Navbar />
 
-      <main className="soft-gradient-background bg-background text-foreground">
-        <section
-          aria-labelledby="hero-heading"
-          className="section site-container hero-placeholder"
-        >
-          <p>Hello, I&apos;m</p>
+      <main className="bg-background text-foreground">
+        <Hero />
 
-          <h1 id="hero-heading">Keshav Raj Sharma</h1>
-
-          <p>Full-Stack Developer & AI/Data Science Enthusiast</p>
-
-          <p>
-            Computer Engineering student building intelligent software systems
-            across full-stack development, AI, data science, IoT, and computer
-            graphics.
-          </p>
-        </section>
+        <About />
 
         <section
           id="projects"
           aria-labelledby="projects-heading"
-          className="section site-container"
+          className="section site-container section-placeholder"
         >
-          <h2 id="projects-heading">Featured Projects</h2>
-        </section>
+          <p className="section-eyebrow">Projects</p>
 
-        <section
-          id="about"
-          aria-labelledby="about-heading"
-          className="section site-container"
-        >
-          <h2 id="about-heading">About Me</h2>
+          <h2 id="projects-heading">Selected Work</h2>
         </section>
 
         <section
           id="skills"
           aria-labelledby="skills-heading"
-          className="section site-container"
+          className="section site-container section-placeholder"
         >
+          <p className="section-eyebrow">Capabilities</p>
+
           <h2 id="skills-heading">Skills</h2>
         </section>
 
         <section
           id="experience"
           aria-labelledby="experience-heading"
-          className="section site-container"
+          className="section site-container section-placeholder"
         >
-          <h2 id="experience-heading">Experience & Activities</h2>
+          <p className="section-eyebrow">Journey</p>
+
+          <h2 id="experience-heading">Experience &amp; Activities</h2>
+        </section>
+
+        <section
+          id="other-projects"
+          aria-labelledby="other-projects-heading"
+          className="section site-container section-placeholder"
+        >
+          <p className="section-eyebrow">More Work</p>
+
+          <h2 id="other-projects-heading">Other Projects</h2>
         </section>
 
         <section
           id="contact"
           aria-labelledby="contact-heading"
-          className="section site-container"
+          className="section site-container section-placeholder"
         >
+          <p className="section-eyebrow">Get in Touch</p>
+
           <h2 id="contact-heading">Contact</h2>
         </section>
       </main>
