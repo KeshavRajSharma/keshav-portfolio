@@ -1,39 +1,68 @@
+import { Navbar } from "@/components/layout/navbar";
+
 export default function Home() {
   return (
-    <main>
-      <section aria-labelledby="hero-heading">
-        <p>Hello, I&apos;m</p>
+    <>
+      <Navbar />
 
-        <h1 id="hero-heading">Keshav Raj Sharma</h1>
+      <main className="soft-gradient-background bg-background text-foreground">
+        <section
+          aria-labelledby="hero-heading"
+          className="section site-container hero-placeholder"
+        >
+          <p>Hello, I&apos;m</p>
 
-        <p>Full-Stack Developer & AI/Data Science Enthusiast</p>
+          <h1 id="hero-heading">Keshav Raj Sharma</h1>
 
-        <p>
-          Computer Engineering student building intelligent software systems
-          across full-stack development, AI, data science, IoT, and computer
-          graphics.
-        </p>
-      </section>
+          <p>Full-Stack Developer & AI/Data Science Enthusiast</p>
 
-      <section id="projects" aria-labelledby="projects-heading">
-        <h2 id="projects-heading">Featured Projects</h2>
-      </section>
+          <p>
+            Computer Engineering student building intelligent software systems
+            across full-stack development, AI, data science, IoT, and computer
+            graphics.
+          </p>
+        </section>
 
-      <section id="about" aria-labelledby="about-heading">
-        <h2 id="about-heading">About Me</h2>
-      </section>
+        <section
+          id="projects"
+          aria-labelledby="projects-heading"
+          className="section site-container"
+        >
+          <h2 id="projects-heading">Featured Projects</h2>
+        </section>
 
-      <section id="skills" aria-labelledby="skills-heading">
-        <h2 id="skills-heading">Skills</h2>
-      </section>
+        <section
+          id="about"
+          aria-labelledby="about-heading"
+          className="section site-container"
+        >
+          <h2 id="about-heading">About Me</h2>
+        </section>
 
-      <section id="experience" aria-labelledby="experience-heading">
-        <h2 id="experience-heading">Experience & Activities</h2>
-      </section>
+        <section
+          id="skills"
+          aria-labelledby="skills-heading"
+          className="section site-container"
+        >
+          <h2 id="skills-heading">Skills</h2>
+        </section>
 
-      <section id="contact" aria-labelledby="contact-heading">
-        <h2 id="contact-heading">Contact</h2>
-      </section>
-    </main>
+        <section
+          id="experience"
+          aria-labelledby="experience-heading"
+          className="section site-container"
+        >
+          <h2 id="experience-heading">Experience & Activities</h2>
+        </section>
+
+        <section
+          id="contact"
+          aria-labelledby="contact-heading"
+          className="section site-container"
+        >
+          <h2 id="contact-heading">Contact</h2>
+        </section>
+      </main>
+    </>
   );
 }
