@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { About } from "@/components/sections/about";
 import { Hero } from "@/components/sections/hero";
 import { SelectedWork } from "@/components/sections/selected-work";
+import { Skills } from "@/components/sections/skills";
 
 export default function Home() {
   return (
@@ -15,15 +16,7 @@ export default function Home() {
 
         <SelectedWork />
 
-        <section
-          id="skills"
-          aria-labelledby="skills-heading"
-          className="section site-container section-placeholder"
-        >
-          <p className="section-eyebrow">Capabilities</p>
-
-          <h2 id="skills-heading">Skills</h2>
-        </section>
+        <Skills />
 
         <section
           id="experience"
