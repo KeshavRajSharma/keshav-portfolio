@@ -1,6 +1,8 @@
 import { Navbar } from "@/components/layout/navbar";
 import { About } from "@/components/sections/about";
+import { Experience } from "@/components/sections/experience";
 import { Hero } from "@/components/sections/hero";
+import { OtherProjects } from "@/components/sections/other-projects";
 import { SelectedWork } from "@/components/sections/selected-work";
 import { Skills } from "@/components/sections/skills";
 
@@ -18,25 +20,9 @@ export default function Home() {
 
         <Skills />
 
-        <section
-          id="experience"
-          aria-labelledby="experience-heading"
-          className="section site-container section-placeholder"
-        >
-          <p className="section-eyebrow">Journey</p>
+        <Experience />
 
-          <h2 id="experience-heading">Experience &amp; Activities</h2>
-        </section>
-
-        <section
-          id="other-projects"
-          aria-labelledby="other-projects-heading"
-          className="section site-container section-placeholder"
-        >
-          <p className="section-eyebrow">More Work</p>
-
-          <h2 id="other-projects-heading">Other Projects</h2>
-        </section>
+        <OtherProjects />
 
         <section
           id="contact"

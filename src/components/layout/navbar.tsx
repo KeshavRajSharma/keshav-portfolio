@@ -35,47 +35,60 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    function handleScroll() {
+    function updateNavbar() {
       setScrolled(window.scrollY > 20);
+
+      const sections = navItems
+        .map((item) => document.querySelector<HTMLElement>(item.href))
+        .filter((section): section is HTMLElement => section !== null);
+
+      /*
+       * The active section is whichever section currently
+       * crosses this point near the upper part of the viewport.
+       *
+       * This is more predictable than choosing from only the
+       * IntersectionObserver entries that changed.
+       */
+      const activationPoint = Math.min(window.innerHeight * 0.28, 220);
+
+      let currentSection = "";
+
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= activationPoint && rect.bottom > activationPoint) {
+          currentSection = section.id;
+          break;
+        }
+      }
+
+      /*
+       * Contact can be short. When the user reaches the bottom
+       * of the page, make sure Contact becomes active.
+       */
+      const reachedBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 4;
+
+      if (reachedBottom) {
+        currentSection = "contact";
+      }
+
+      setActiveSection(currentSection);
     }
 
-    window.addEventListener("scroll", handleScroll, {
+    updateNavbar();
+
+    window.addEventListener("scroll", updateNavbar, {
       passive: true,
     });
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const sections = navItems
-      .map((item) => document.querySelector(item.href))
-      .filter((section): section is Element => Boolean(section));
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (first, second) =>
-              second.intersectionRatio - first.intersectionRatio,
-          )[0];
-
-        if (visibleEntry?.target.id) {
-          setActiveSection(visibleEntry.target.id);
-        }
-      },
-      {
-        rootMargin: "-35% 0px -50% 0px",
-        threshold: [0.05, 0.2, 0.5],
-      },
-    );
-
-    sections.forEach((section) => observer.observe(section));
+    window.addEventListener("resize", updateNavbar);
 
     return () => {
-      observer.disconnect();
+      window.removeEventListener("scroll", updateNavbar);
+
+      window.removeEventListener("resize", updateNavbar);
     };
   }, []);
 
@@ -104,6 +117,7 @@ export function Navbar() {
             <ul className="navbar-links">
               {navItems.map((item) => {
                 const sectionId = item.href.slice(1);
+
                 const isActive = activeSection === sectionId;
 
                 return (

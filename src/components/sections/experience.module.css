@@ -1,0 +1,293 @@
+.section {
+  position: relative;
+
+  overflow: hidden;
+
+  border-top: 1px solid var(--border);
+
+  background: var(--background);
+}
+
+.heading {
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.headingRow {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(280px, 0.55fr);
+
+  gap: 3rem;
+
+  align-items: end;
+}
+
+.headingRow h2 {
+  margin: 0;
+
+  color: var(--foreground);
+
+  font-size: clamp(2.2rem, 4.5vw, 3.7rem);
+  line-height: 1.06;
+
+  font-weight: 690;
+
+  letter-spacing: -0.05em;
+}
+
+.headingRow > p {
+  max-width: 430px;
+
+  justify-self: end;
+
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.timeline {
+  position: relative;
+
+  max-width: 920px;
+
+  margin-inline: auto;
+}
+
+.timeline::before {
+  content: "";
+
+  position: absolute;
+
+  top: 1.4rem;
+  bottom: 1.4rem;
+  left: 1.35rem;
+
+  width: 1px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      var(--border-strong) 8%,
+      var(--border-strong) 92%,
+      transparent
+    );
+}
+
+.item {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 2.7rem 1fr;
+
+  gap: 1.2rem;
+
+  padding-bottom: 1.15rem;
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.marker {
+  position: relative;
+
+  z-index: 2;
+
+  width: 2.7rem;
+  height: 2.7rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--primary);
+
+  background: var(--background);
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--primary) 24%,
+      var(--border)
+    );
+
+  border-radius: 0.9rem;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.card {
+  padding: 1.35rem 1.45rem;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--surface-elevated) 88%,
+      transparent
+    );
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform var(--transition-fast) ease,
+    border-color var(--transition-fast) ease,
+    box-shadow var(--transition-fast) ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+
+  border-color: var(--border-strong);
+
+  box-shadow: var(--shadow-md);
+}
+
+.cardTop {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 2rem;
+}
+
+.type {
+  display: inline-block;
+
+  margin-bottom: 0.5rem;
+
+  color: var(--primary);
+
+  font-family: var(--font-geist-mono);
+  font-size: 0.68rem;
+  font-weight: 650;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+}
+
+.card h3 {
+  margin: 0;
+
+  color: var(--foreground);
+
+  font-size: 1.12rem;
+  font-weight: 650;
+
+  letter-spacing: -0.025em;
+}
+
+.organization {
+  margin: 0.3rem 0 0;
+
+  color: var(--muted-strong);
+
+  font-size: 0.88rem;
+  font-weight: 550;
+}
+
+.period {
+  flex-shrink: 0;
+
+  color: var(--muted);
+
+  font-family: var(--font-geist-mono);
+  font-size: 0.72rem;
+}
+
+.description {
+  max-width: 720px;
+
+  margin: 1rem 0 0;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.48rem;
+
+  padding: 0;
+  margin: 1.15rem 0 0;
+
+  list-style: none;
+}
+
+.highlights li {
+  padding: 0.4rem 0.62rem;
+
+  color: var(--muted-strong);
+  background: var(--surface-muted);
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  font-size: 0.7rem;
+  font-weight: 550;
+}
+
+@media (max-width: 700px) {
+  .headingRow {
+    grid-template-columns: 1fr;
+
+    gap: 1.2rem;
+  }
+
+  .headingRow > p {
+    justify-self: start;
+  }
+
+  .timeline {
+    margin-inline: 0;
+  }
+
+  .cardTop {
+    flex-direction: column;
+
+    gap: 0.7rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .timeline::before {
+    left: 1.1rem;
+  }
+
+  .item {
+    grid-template-columns: 2.2rem 1fr;
+
+    gap: 0.85rem;
+  }
+
+  .marker {
+    width: 2.2rem;
+    height: 2.2rem;
+
+    border-radius: 0.72rem;
+  }
+
+  .marker svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .card {
+    padding: 1.15rem;
+  }
+}
