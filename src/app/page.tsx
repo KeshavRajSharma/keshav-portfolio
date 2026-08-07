@@ -1,3 +1,5 @@
+import { Contact } from "@/components/contact/contact";
+import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { About } from "@/components/sections/about";
 import { Experience } from "@/components/sections/experience";
@@ -24,16 +26,10 @@ export default function Home() {
 
         <OtherProjects />
 
-        <section
-          id="contact"
-          aria-labelledby="contact-heading"
-          className="section site-container section-placeholder"
-        >
-          <p className="section-eyebrow">Get in Touch</p>
-
-          <h2 id="contact-heading">Contact</h2>
-        </section>
+        <Contact />
       </main>
+
+      <Footer />
     </>
   );
 }

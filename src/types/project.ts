@@ -45,7 +45,11 @@ export type Project = {
 
   image?: string;
   imageAlt?: string;
-  screenshots?: string[];
+
+  screenshots?: {
+    src: string;
+    alt: string;
+  }[];
 
   myRole?: string;
 

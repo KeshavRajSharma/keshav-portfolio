@@ -1,6 +1,7 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
 import { SiGithub } from "react-icons/si";
 
@@ -61,6 +62,10 @@ export function SelectedWork() {
           {featuredProjects.map((project, index) => {
             const accentClass = accentClassMap[project.accent];
 
+            const visibleTechnologies = project.technologies.filter(
+              (technology) => !technology.startsWith("TODO"),
+            );
+
             return (
               <motion.article
                 key={project.id}
@@ -98,12 +103,9 @@ export function SelectedWork() {
                     <strong>{project.title}</strong>
 
                     <div className={styles.visualTechnologies}>
-                      {project.technologies
-                        .filter((technology) => !technology.startsWith("TODO"))
-                        .slice(0, 4)
-                        .map((technology) => (
-                          <span key={technology}>{technology}</span>
-                        ))}
+                      {visibleTechnologies.slice(0, 4).map((technology) => (
+                        <span key={technology}>{technology}</span>
+                      ))}
                     </div>
                   </div>
 
@@ -123,19 +125,27 @@ export function SelectedWork() {
                     {project.shortDescription}
                   </p>
 
-                  <ul
-                    className={styles.technologies}
-                    aria-label={`${project.title} technologies`}
-                  >
-                    {project.technologies
-                      .filter((technology) => !technology.startsWith("TODO"))
-                      .slice(0, 6)
-                      .map((technology) => (
+                  {visibleTechnologies.length > 0 && (
+                    <ul
+                      className={styles.technologies}
+                      aria-label={`${project.title} technologies`}
+                    >
+                      {visibleTechnologies.slice(0, 6).map((technology) => (
                         <li key={technology}>{technology}</li>
                       ))}
-                  </ul>
+                    </ul>
+                  )}
 
                   <div className={styles.links}>
+                    <Link href={`/projects/${project.slug}`}>
+                      View Details
+                      <ArrowUpRight
+                        size={15}
+                        strokeWidth={1.8}
+                        aria-hidden="true"
+                      />
+                    </Link>
+
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
