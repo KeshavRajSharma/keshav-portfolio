@@ -171,8 +171,10 @@ export const projects: Project[] = [
 
     status: "Completed",
 
+    image: "/images/projects/house-price-prediction/cover.webp",
+
     imageAlt:
-      "House Price Prediction machine learning model analysis and evaluation",
+      "House Price Prediction model comparison chart showing RMSE across regression models",
 
     accent: "violet-blue",
 
