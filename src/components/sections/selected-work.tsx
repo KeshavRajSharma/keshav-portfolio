@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
@@ -89,27 +90,50 @@ export function SelectedWork() {
                 }}
               >
                 <div className={`${styles.visual} ${accentClass}`}>
-                  <div className={styles.visualGlow} aria-hidden="true" />
+                  {project.image ? (
+                    <>
+                      <Image
+                        src={project.image}
+                        alt={
+                          project.imageAlt ??
+                          `${project.title} project screenshot`
+                        }
+                        fill
+                        loading={index === 0 ? "eager" : "lazy"}
+                        fetchPriority={index === 0 ? "high" : "auto"}
+                        sizes="(max-width: 950px) 100vw, 55vw"
+                        className={styles.projectImage}
+                      />
+
+                      <div className={styles.imageOverlay} aria-hidden="true" />
+                    </>
+                  ) : (
+                    <div className={styles.visualGlow} aria-hidden="true" />
+                  )}
 
                   <span className={styles.projectNumber}>
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
-                  <div className={styles.visualContent}>
-                    <span className={styles.visualCategory}>
-                      {project.category}
-                    </span>
+                  {!project.image && (
+                    <div className={styles.visualContent}>
+                      <span className={styles.visualCategory}>
+                        {project.category}
+                      </span>
 
-                    <strong>{project.title}</strong>
+                      <strong>{project.title}</strong>
 
-                    <div className={styles.visualTechnologies}>
-                      {visibleTechnologies.slice(0, 4).map((technology) => (
-                        <span key={technology}>{technology}</span>
-                      ))}
+                      <div className={styles.visualTechnologies}>
+                        {visibleTechnologies.slice(0, 4).map((technology) => (
+                          <span key={technology}>{technology}</span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  <span className={styles.previewLabel}>Project Preview</span>
+                  <span className={styles.previewLabel}>
+                    {project.image ? "Project" : "Project Preview"}
+                  </span>
                 </div>
 
                 <div className={styles.content}>

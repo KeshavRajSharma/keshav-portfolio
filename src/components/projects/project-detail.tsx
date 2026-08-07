@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -114,21 +115,43 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             <div
               className={`${styles.preview} ${accentClassMap[project.accent]}`}
             >
-              <div className={styles.previewGlow} aria-hidden="true" />
+              {project.image ? (
+                <>
+                  <Image
+                    src={project.image}
+                    alt={
+                      project.imageAlt ?? `${project.title} project screenshot`
+                    }
+                    fill
+                    priority
+                    sizes="(max-width: 900px) 100vw, 55vw"
+                    className={styles.previewImage}
+                  />
 
-              <span className={styles.previewLabel}>Project</span>
+                  <div
+                    className={styles.previewImageOverlay}
+                    aria-hidden="true"
+                  />
+                </>
+              ) : (
+                <>
+                  <div className={styles.previewGlow} aria-hidden="true" />
 
-              <div className={styles.previewContent}>
-                <span>{project.category}</span>
+                  <span className={styles.previewLabel}>Project</span>
 
-                <strong>{project.title}</strong>
+                  <div className={styles.previewContent}>
+                    <span>{project.category}</span>
 
-                <div className={styles.previewTech}>
-                  {technologies.slice(0, 4).map((technology) => (
-                    <span key={technology}>{technology}</span>
-                  ))}
-                </div>
-              </div>
+                    <strong>{project.title}</strong>
+
+                    <div className={styles.previewTech}>
+                      {technologies.slice(0, 4).map((technology) => (
+                        <span key={technology}>{technology}</span>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </motion.div>
@@ -258,6 +281,49 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           </motion.section>
         )}
 
+        {project.screenshots && project.screenshots.length > 0 && (
+          <motion.section
+            className={styles.gallerySection}
+            initial={{
+              opacity: 0,
+              y: 16,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.15,
+            }}
+            transition={{
+              duration: 0.45,
+            }}
+          >
+            <p className="section-eyebrow">Project Visuals</p>
+
+            <h2>Inside the project</h2>
+
+            <div className={styles.gallery}>
+              {project.screenshots.map((screenshot) => (
+                <figure key={screenshot.src} className={styles.galleryItem}>
+                  <div className={styles.galleryImage}>
+                    <Image
+                      src={screenshot.src}
+                      alt={screenshot.alt}
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 800px) 100vw, 1100px"
+                    />
+                  </div>
+
+                  <figcaption>{screenshot.alt}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
         <div className={styles.bottomNavigation}>
           <Link href="/#projects">
             <ArrowLeft size={16} strokeWidth={1.8} aria-hidden="true" />
@@ -268,3 +334,4 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
     </article>
   );
 }
+ 

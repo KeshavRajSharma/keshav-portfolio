@@ -34,8 +34,10 @@ export const projects: Project[] = [
 
     sourceVisibility: "Public",
 
+    image: "/images/projects/intelligent-traffic-moderator/dashboard.webp",
+
     imageAlt:
-      "Intelligent Traffic Moderator dashboard for AI-powered traffic monitoring and signal optimization",
+      "Intelligent Traffic Moderator dashboard showing AI-powered traffic monitoring and analysis",
 
     accent: "blue-violet",
 
@@ -68,7 +70,9 @@ export const projects: Project[] = [
 
     status: "Active",
 
-    imageAlt: "Nepal Rastriya News production news website",
+    image: "/images/projects/nepal-rastriya-news/news.webp",
+
+    imageAlt: "Nepal Rastriya News production news website homepage",
 
     accent: "red-orange",
 
@@ -114,8 +118,17 @@ export const projects: Project[] = [
 
     projectType: "Academic",
 
+    image: "/images/projects/live-location-tracker/demo.webp",
+
     imageAlt:
-      "ESP32 live GPS location tracker with React Native mobile application",
+      "Live Location Tracker mobile application showing real-time GPS tracking",
+
+    screenshots: [
+      {
+        src: "/images/projects/live-location-tracker/hardware.webp",
+        alt: "ESP32 GPS hardware used in the Live Location Tracker project",
+      },
+    ],
 
     accent: "cyan-emerald",
 
@@ -194,6 +207,8 @@ export const projects: Project[] = [
     sourceVisibility: "Public",
 
     projectType: "Academic",
+
+    image: "/images/projects/opengl-car-racing/open.webp",
 
     imageAlt:
       "OpenGL car racing game demonstrating computer graphics algorithms",

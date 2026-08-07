@@ -185,6 +185,8 @@
   box-shadow: var(--shadow-lg);
 
   isolation: isolate;
+
+  background: var(--surface-muted);
 }
 
 .preview::before {
@@ -209,8 +211,8 @@
   background:
     linear-gradient(
       145deg,
-      rgba(4, 8, 18, 0.12),
-      rgba(4, 8, 18, 0.5)
+      rgba(4, 8, 18, 0.08),
+      rgba(4, 8, 18, 0.25)
     );
 
   border-radius:
@@ -287,6 +289,36 @@
     );
 }
 
+.previewImage {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.previewImageOverlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 7, 18, 0.02),
+      rgba(3, 7, 18, 0.16)
+    );
+
+  pointer-events: none;
+}
+
 .previewGlow {
   position: absolute;
 
@@ -336,13 +368,12 @@
 }
 
 .previewContent > span {
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.72
-    );
+  color: rgba(
+    255,
+    255,
+    255,
+    0.72
+  );
 
   font-family: var(--font-geist-mono);
   font-size: 0.7rem;
@@ -382,24 +413,21 @@
 .previewTech span {
   padding: 0.4rem 0.62rem;
 
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.9
-    );
+  color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  );
 
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      0.1
-    );
+  background: rgba(
+    255,
+    255,
+    255,
+    0.1
+  );
 
-  border:
-    1px solid
+  border: 1px solid
     rgba(
       255,
       255,
@@ -431,7 +459,8 @@
 }
 
 .overview h2,
-.sectionBlock h2 {
+.sectionBlock h2,
+.gallerySection h2 {
   margin: 0;
 
   color: var(--foreground);
@@ -527,6 +556,55 @@
   font-weight: 550;
 }
 
+.gallerySection {
+  padding-block: 4rem;
+
+  border-top: 1px solid var(--border);
+}
+
+.gallery {
+  display: grid;
+
+  gap: 1.5rem;
+
+  margin-top: 1.8rem;
+}
+
+.galleryItem {
+  margin: 0;
+}
+
+.galleryImage {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  background: var(--surface-muted);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-md);
+}
+
+.galleryImage img {
+  object-fit: contain;
+
+  background: var(--surface-muted);
+}
+
+.galleryItem figcaption {
+  margin-top: 0.7rem;
+
+  color: var(--muted);
+
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
 .bottomNavigation {
   padding-block:
     3rem
@@ -609,5 +687,9 @@
 
   .sidebar {
     grid-template-columns: 1fr;
+  }
+
+  .galleryImage {
+    border-radius: var(--radius-md);
   }
 }
