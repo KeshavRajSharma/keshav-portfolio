@@ -46,11 +46,23 @@
       transparent 32%
     );
 
-  --shadow-sm: 0 4px 18px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 14px 40px rgba(15, 23, 42, 0.1);
-  --shadow-lg: 0 24px 70px rgba(15, 23, 42, 0.13);
+  --shadow-sm:
+    0 4px 18px rgba(15, 23, 42, 0.06);
+
+  --shadow-md:
+    0 14px 40px rgba(15, 23, 42, 0.1);
+
+  --shadow-lg:
+    0 24px 70px rgba(15, 23, 42, 0.13);
 
   --container-width: 1200px;
+
+  /*
+   * Navbar is intentionally slightly wider
+   * than the normal content container.
+   */
+  --navbar-container-width: 1320px;
+
   --section-padding: 6.5rem;
   --navbar-height: 4.75rem;
 
@@ -110,9 +122,14 @@
       transparent 32%
     );
 
-  --shadow-sm: 0 4px 18px rgba(0, 0, 0, 0.22);
-  --shadow-md: 0 14px 40px rgba(0, 0, 0, 0.28);
-  --shadow-lg: 0 24px 70px rgba(0, 0, 0, 0.34);
+  --shadow-sm:
+    0 4px 18px rgba(0, 0, 0, 0.22);
+
+  --shadow-md:
+    0 14px 40px rgba(0, 0, 0, 0.28);
+
+  --shadow-lg:
+    0 24px 70px rgba(0, 0, 0, 0.34);
 }
 
 @theme inline {
@@ -139,19 +156,28 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--navbar-height) + 1rem);
+
+  scroll-padding-top:
+    calc(var(--navbar-height) + 1rem);
+
   background: var(--background);
 }
 
 body {
   margin: 0;
+
   min-height: 100vh;
+
   overflow-x: hidden;
 
   background: var(--background);
   color: var(--foreground);
 
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family:
+    var(--font-geist-sans),
+    Arial,
+    Helvetica,
+    sans-serif;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -162,7 +188,13 @@ body {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--primary) 25%, transparent);
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 25%,
+      transparent
+    );
+
   color: var(--foreground);
 }
 
@@ -187,6 +219,7 @@ picture,
 svg,
 video {
   display: block;
+
   max-width: 100%;
 }
 
@@ -195,7 +228,12 @@ main {
 }
 
 .site-container {
-  width: min(calc(100% - 3rem), var(--container-width));
+  width:
+    min(
+      calc(100% - 3rem),
+      var(--container-width)
+    );
+
   margin-inline: auto;
 }
 
@@ -205,8 +243,10 @@ main {
 
 .gradient-text {
   background: var(--gradient-primary);
+
   background-clip: text;
   -webkit-background-clip: text;
+
   color: transparent;
 }
 
@@ -299,18 +339,25 @@ main {
 
   border-bottom-color: var(--border);
 
-  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+  box-shadow:
+    0 8px 30px rgba(15, 23, 42, 0.04);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
 
 .dark .navbar-shell-scrolled {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.16);
 }
 
 .navbar-container {
-  width: min(calc(100% - 3rem), var(--container-width));
+  width:
+    min(
+      calc(100% - 3rem),
+      var(--container-width)
+    );
+
   height: var(--navbar-height);
 
   display: flex;
@@ -331,7 +378,8 @@ main {
 
   letter-spacing: -0.025em;
 
-  transition: color var(--transition-fast) ease;
+  transition:
+    color var(--transition-fast) ease;
 }
 
 .navbar-brand:hover {
@@ -344,6 +392,7 @@ main {
 
 .navbar-right {
   display: flex;
+
   align-items: center;
 
   gap: 1.25rem;
@@ -353,6 +402,7 @@ main {
 
 .navbar-links {
   display: flex;
+
   align-items: center;
 
   gap: 0.32rem;
@@ -367,6 +417,7 @@ main {
   position: relative;
 
   display: inline-flex;
+
   align-items: center;
 
   padding: 0.65rem 0.78rem;
@@ -376,7 +427,8 @@ main {
   font-size: 0.88rem;
   font-weight: 500;
 
-  transition: color var(--transition-fast) ease;
+  transition:
+    color var(--transition-fast) ease;
 }
 
 .navbar-link::after {
@@ -396,7 +448,8 @@ main {
 
   transform: translateX(-50%);
 
-  transition: width var(--transition-fast) ease;
+  transition:
+    width var(--transition-fast) ease;
 }
 
 .navbar-link:hover {
@@ -414,6 +467,7 @@ main {
 
 .navbar-actions {
   display: flex;
+
   align-items: center;
 
   gap: 0.65rem;
@@ -444,6 +498,21 @@ main {
 
 .navbar-mobile {
   display: none;
+}
+
+/*
+ * Desktop navbar gets slightly more width than
+ * the page content, moving both outer groups
+ * outward without hacks such as translateX().
+ */
+@media (min-width: 901px) {
+  .navbar-container {
+    width:
+      min(
+        calc(100% - 3rem),
+        var(--navbar-container-width)
+      );
+  }
 }
 
 /* =========================
@@ -517,7 +586,13 @@ main {
 
   color: var(--muted-strong);
 
-  font-size: clamp(1.45rem, 2.7vw, 2.35rem);
+  font-size:
+    clamp(
+      1.45rem,
+      2.7vw,
+      2.35rem
+    );
+
   line-height: 1.22;
 
   font-weight: 620;
@@ -541,7 +616,13 @@ main {
 
   color: var(--muted);
 
-  font-size: clamp(0.98rem, 1.5vw, 1.08rem);
+  font-size:
+    clamp(
+      0.98rem,
+      1.5vw,
+      1.08rem
+    );
+
   line-height: 1.75;
 }
 
@@ -558,6 +639,7 @@ main {
   min-height: 3rem;
 
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
@@ -611,7 +693,9 @@ main {
 }
 
 .button:active {
-  transform: translateY(0) scale(0.98);
+  transform:
+    translateY(0)
+    scale(0.98);
 }
 
 .button:focus-visible {
@@ -627,6 +711,7 @@ main {
 
 .hero-social-link {
   display: inline-flex;
+
   align-items: center;
 
   gap: 0.42rem;
@@ -712,6 +797,7 @@ main {
   min-height: 3.2rem;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -751,11 +837,17 @@ main {
 }
 
 .hero-terminal {
-  padding: clamp(1.5rem, 4vw, 2.2rem);
+  padding:
+    clamp(
+      1.5rem,
+      4vw,
+      2.2rem
+    );
 }
 
 .hero-terminal-line {
   display: flex;
+
   align-items: center;
 
   gap: 0.65rem;
@@ -813,6 +905,7 @@ main {
 
 .hero-status {
   display: flex;
+
   align-items: center;
 
   gap: 0.55rem;
@@ -833,7 +926,9 @@ main {
 
   border-radius: 999px;
 
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+  box-shadow:
+    0 0 0 4px
+    rgba(34, 197, 94, 0.1);
 }
 
 .hero-glow {
@@ -855,7 +950,8 @@ main {
   width: 24rem;
   height: 24rem;
 
-  background: rgba(139, 92, 246, 0.28);
+  background:
+    rgba(139, 92, 246, 0.28);
 }
 
 .hero-glow-two {
@@ -865,7 +961,8 @@ main {
   width: 20rem;
   height: 20rem;
 
-  background: rgba(6, 182, 212, 0.18);
+  background:
+    rgba(6, 182, 212, 0.18);
 }
 
 .hero-scroll-indicator {
@@ -875,6 +972,7 @@ main {
   bottom: 1.35rem;
 
   display: flex;
+
   align-items: center;
 
   gap: 0.42rem;
@@ -886,7 +984,8 @@ main {
 
   transform: translateX(-50%);
 
-  transition: color var(--transition-fast) ease;
+  transition:
+    color var(--transition-fast) ease;
 }
 
 .hero-scroll-indicator:hover {
@@ -894,7 +993,7 @@ main {
 }
 
 /* =========================
-   Section placeholders
+   Shared section helpers
    ========================= */
 
 .section-placeholder {
@@ -917,13 +1016,18 @@ main {
 .section-placeholder h2 {
   margin: 0;
 
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      3.4rem
+    );
 
   letter-spacing: -0.045em;
 }
 
 /* =========================
-   Tablet / mobile
+   Responsive
    ========================= */
 
 @media (max-width: 1000px) {
@@ -952,10 +1056,11 @@ main {
   .navbar-mobile {
     display: block;
 
-    width: min(
-      calc(100% - 2rem),
-      var(--container-width)
-    );
+    width:
+      min(
+        calc(100% - 2rem),
+        var(--container-width)
+      );
 
     margin: 0 auto 1rem;
     padding: 0.6rem;
@@ -973,6 +1078,7 @@ main {
 
   .navbar-mobile-links {
     display: flex;
+
     flex-direction: column;
 
     gap: 0.15rem;
@@ -1041,10 +1147,11 @@ main {
 
   .site-container,
   .navbar-container {
-    width: min(
-      calc(100% - 2rem),
-      var(--container-width)
-    );
+    width:
+      min(
+        calc(100% - 2rem),
+        var(--container-width)
+      );
   }
 
   .navbar-container {
@@ -1059,6 +1166,7 @@ main {
     font-size: 0.9rem;
 
     text-overflow: ellipsis;
+
     white-space: nowrap;
   }
 
@@ -1070,11 +1178,21 @@ main {
   }
 
   .hero-title {
-    font-size: clamp(2.7rem, 13vw, 4.4rem);
+    font-size:
+      clamp(
+        2.7rem,
+        13vw,
+        4.4rem
+      );
   }
 
   .hero-headline {
-    font-size: clamp(1.35rem, 6vw, 2rem);
+    font-size:
+      clamp(
+        1.35rem,
+        6vw,
+        2rem
+      );
   }
 
   .hero-actions {
@@ -1126,8 +1244,13 @@ main {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
   }
 }

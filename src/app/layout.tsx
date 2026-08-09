@@ -16,6 +16,15 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+
+  /*
+   * Geist Mono is used for smaller technical labels,
+   * but it is not always visible immediately above the fold,
+   * especially on mobile.
+   *
+   * Avoid preloading it unnecessarily.
+   */
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -70,7 +79,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
