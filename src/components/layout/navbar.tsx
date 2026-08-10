@@ -42,13 +42,6 @@ export function Navbar() {
         .map((item) => document.querySelector<HTMLElement>(item.href))
         .filter((section): section is HTMLElement => section !== null);
 
-      /*
-       * The active section is whichever section currently
-       * crosses this point near the upper part of the viewport.
-       *
-       * This is more predictable than choosing from only the
-       * IntersectionObserver entries that changed.
-       */
       const activationPoint = Math.min(window.innerHeight * 0.28, 220);
 
       let currentSection = "";
@@ -62,10 +55,6 @@ export function Navbar() {
         }
       }
 
-      /*
-       * Contact can be short. When the user reaches the bottom
-       * of the page, make sure Contact becomes active.
-       */
       const reachedBottom =
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 4;
@@ -91,6 +80,30 @@ export function Navbar() {
       window.removeEventListener("resize", updateNavbar);
     };
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen]);
 
   function closeMenu() {
     setMenuOpen(false);
@@ -127,6 +140,7 @@ export function Navbar() {
                       className={`navbar-link ${
                         isActive ? "navbar-link-active" : ""
                       }`}
+                      aria-current={isActive ? "location" : undefined}
                     >
                       {item.label}
                     </a>
@@ -168,14 +182,17 @@ export function Navbar() {
             initial={{
               opacity: 0,
               y: -8,
+              scale: 0.99,
             }}
             animate={{
               opacity: 1,
               y: 0,
+              scale: 1,
             }}
             exit={{
               opacity: 0,
               y: -8,
+              scale: 0.99,
             }}
             transition={{
               duration: 0.18,
@@ -183,13 +200,24 @@ export function Navbar() {
             }}
           >
             <ul className="navbar-mobile-links">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <a href={item.href} onClick={closeMenu}>
-                    {item.label}
-                  </a>
-                </li>
-              ))}
+              {navItems.map((item) => {
+                const sectionId = item.href.slice(1);
+
+                const isActive = activeSection === sectionId;
+
+                return (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      onClick={closeMenu}
+                      className={isActive ? "navbar-mobile-link-active" : ""}
+                      aria-current={isActive ? "location" : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </motion.nav>
         )}
