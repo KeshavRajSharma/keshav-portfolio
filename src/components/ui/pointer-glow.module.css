@@ -1,0 +1,52 @@
+.glow {
+  --pointer-x: 50vw;
+  --pointer-y: 50vh;
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  background: radial-gradient(
+    280px circle at var(--pointer-x) var(--pointer-y),
+    color-mix(in srgb, var(--primary) 7%, transparent),
+    transparent 68%
+  );
+
+  transition: opacity 220ms ease;
+}
+
+.glow[data-visible="true"] {
+  opacity: 1;
+}
+
+:global(.dark) .glow {
+  background: radial-gradient(
+    300px circle at var(--pointer-x) var(--pointer-y),
+    color-mix(in srgb, var(--primary) 8%, transparent),
+    transparent 68%
+  );
+}
+
+@media (pointer: coarse) {
+  .glow {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .glow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow {
+    display: none;
+  }
+}

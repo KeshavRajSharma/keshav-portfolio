@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { PointerGlow } from "@/components/ui/pointer-glow";
 import { siteConfig } from "@/data/site";
 
 import "./globals.css";
@@ -16,14 +17,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-
-  /*
-   * Geist Mono is used for smaller technical labels,
-   * but it is not always visible immediately above the fold,
-   * especially on mobile.
-   *
-   * Avoid preloading it unnecessarily.
-   */
   preload: false,
 });
 
@@ -81,7 +74,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+
+          <PointerGlow />
+        </ThemeProvider>
       </body>
     </html>
   );
