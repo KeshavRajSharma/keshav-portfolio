@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main className="bg-background text-foreground">
+      <main id="main-content" className="bg-background text-foreground">
         <Hero />
 
         <About />

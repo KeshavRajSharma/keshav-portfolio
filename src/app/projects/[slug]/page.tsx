@@ -38,10 +38,10 @@ export async function generateMetadata({
     },
 
     openGraph: {
+      type: "website",
+      url: `/projects/${project.slug}`,
       title: project.seo.title,
       description: project.seo.description,
-      url: `/projects/${project.slug}`,
-      type: "website",
     },
 
     twitter: {
@@ -65,7 +65,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     <>
       <Navbar />
 
-      <main>
+      <main id="main-content">
         <ProjectDetail project={project} />
       </main>
 
